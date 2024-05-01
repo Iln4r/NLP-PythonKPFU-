@@ -9,13 +9,14 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
+            background-color: #f1f1f1; /* Изменено на светло-зеленый */
             color: #333;
         }
 
         h1 {
             text-align: center;
             margin-top: 20px;
+            color: #007f3d; /* Изменено на темно-зеленый */
         }
 
         form {
@@ -39,7 +40,7 @@
         button {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #007bff;
+            background-color: #007f3d; /* Изменено на темно-зеленый */
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -48,7 +49,7 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #005b2b; /* Изменено на более темный оттенок зеленого при наведении */
         }
 
         #result {
@@ -97,6 +98,7 @@
             .then(response => response.json())
             .then(data => {
                 displayResult(data);
+                countStats(text);
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -111,7 +113,7 @@
                 html += "<li>" + token.text + " (" + token.lemma + ") - " + token.pos + " - " + stringifyFeats(token.feats) + "</li>";
             });
             html += "</ul>";
-            resultDiv.innerHTML = html;
+            resultDiv.innerHTML += html;
         }
 
         function stringifyFeats(feats) {
@@ -123,7 +125,15 @@
             }
             return featStr.slice(0, -2);  // Удаляем лишнюю запятую и пробел в конце
         }
+
+        function countStats(text) {
+            var wordCount = text.trim().split(/\s+/).length;
+            var spaceCount = (text.match(/\s/g) || []).length;
+            var charCount = text.length;
+            var statsDiv = document.createElement("div");
+            statsDiv.innerHTML = "<h2>Статистика текста:</h2><p>Количество слов: " + wordCount + "</p><p>Количество пробелов: " + spaceCount + "</p><p>Общее количество символов: " + charCount + "</p>";
+            document.getElementById("result").appendChild(statsDiv);
+        }
     </script>
 </body>
 </html>
-
