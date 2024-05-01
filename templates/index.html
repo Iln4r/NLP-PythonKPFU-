@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natasha Syntax Parsing</title>
+    <title>Морфологический анализ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -107,7 +107,7 @@
 
         function displayResult(result) {
             var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "<h2>Синтаксический и морфологический анализ:</h2>";
+            resultDiv.innerHTML = "<h2>Морфологический анализ:</h2>";
             var html = "<ul>";
             result.forEach(function(token) {
                 html += "<li>" + token.text + " (" + token.lemma + ") - " + token.pos + " - " + stringifyFeats(token.feats) + "</li>";
